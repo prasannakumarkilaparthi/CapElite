@@ -1,0 +1,17 @@
+class Solution:
+    def romanToInt(self, s: str) -> int: 
+        roman = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500,'M':1000}
+        num = [roman[x] for x in s]
+        ans = 0
+        i = 0
+        while i < len(num):
+            if i == len(num)-1:
+                ans += num[i]
+                break
+            elif num[i] < num[i+1]:
+                ans += num[i+1] - num[i]
+                i += 2
+            else:
+                ans += num[i]
+                i += 1               
+        return ans
