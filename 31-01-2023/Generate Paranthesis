@@ -1,0 +1,21 @@
+class Solution:
+    
+    def recursive(self,n1,n2,string,final_array,n):
+        
+        if n1==n and n2==n:
+            final_array.append(string)
+            return
+         
+        
+
+        if n1 <n:
+            self.recursive(n1+1,n2,string+"(",final_array,n)
+         
+        if n2<n1:
+                self.recursive(n1,n2+1,string+")",final_array,n)
+    
+    
+    def generateParenthesis(self, n: int) -> List[str]:
+        final_array = []
+        self.recursive(0,0,"",final_array,n)
+        return final_array
