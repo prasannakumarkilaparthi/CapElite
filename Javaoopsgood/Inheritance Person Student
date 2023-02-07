@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class person{
+        String firstname;
+        String lastname;
+}
+class Student extends person {
+    private int Id;
+    int sum=0;
+    int n=0;
+    float avg;
+    Student(String fname,String lname,int Id,String []scores){
+        super.firstname=fname;
+        super.lastname=lname;
+        this.Id=Id;
+        for(int i=0;i<scores.length;i++){
+            sum=sum+Integer.parseInt(scores[i]);
+            n++;
+        }
+    }
+    public void calculate(){
+        System.out.println("Name: "+firstname+", "+lastname);
+        System.out.println("ID: "+Id);
+        avg=sum/n;
+        if(avg>=90&&avg<=100){
+        System.out.println("Grade: O");
+        }
+        else if(avg>=80&&avg<90){
+        System.out.println("Grade: E");
+        }
+        else if(avg>=70&&avg<80){
+        System.out.println("Grade: A");
+        }
+        else if(avg>=55&&avg<70){
+        System.out.println("Grade: P");
+        }
+        else if(avg>=40&&avg<55){
+        System.out.println("Grade: D");
+        }
+        else if(avg<40){
+        System.out.println("Grade: T");
+        }
+        
+    }
+}
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner a=new Scanner(System.in);
+        String []s=a.nextLine().split(" ");
+        int n=a.nextInt();
+        a.nextLine();
+        String []scores=a.nextLine().split(" ");
+        Student obj=new Student(s[1],s[0],Integer.parseInt(s[2]),scores);
+        obj.calculate();
+        
+    }
+}
+
+    
+    
