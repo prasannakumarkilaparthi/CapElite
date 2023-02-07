@@ -1,0 +1,73 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+class Result {
+
+    /*
+     * Complete the 'balancedSums' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts INTEGER_ARRAY arr as parameter.
+     */
+
+    public static String balancedSums(List<Integer> arr) {
+    // Write your code here
+        int n = arr.size();
+        int s1 [] = new int [n];
+        int s2 [] = new int [n];
+        s1[0] = arr.get(0);
+        s2[n-1] = arr.get(n-1);
+        for (int i = 1 ; i < n ; i++){
+            s1[i] = arr.get(i) + s1[i-1];
+        } 
+        for (int i = n-2 ; i >= 0 ; i--){
+            s2[i] = arr.get(i) + s2[i+1];
+        }
+        for (int i = 0 ; i < n; i++){
+            if (s1[i] == s2[i]){
+                return "YES";
+            }
+        }
+        
+        return "NO";
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int T = Integer.parseInt(bufferedReader.readLine().trim());
+
+        IntStream.range(0, T).forEach(TItr -> {
+            try {
+                int n = Integer.parseInt(bufferedReader.readLine().trim());
+
+                List<Integer> arr = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+                    .map(Integer::parseInt)
+                    .collect(toList());
+
+                String result = Result.balancedSums(arr);
+
+                bufferedWriter.write(result);
+                bufferedWriter.newLine();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
