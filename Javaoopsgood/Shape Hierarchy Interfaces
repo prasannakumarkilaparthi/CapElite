@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        double g=22.0/7; 
+        Scanner input=new Scanner(System.in); 
+        int n = input.nextInt(); 
+        for(int i=0;i<n;i++){ 
+            String s = input.next();
+            if(s.equals("R")){ 
+                int l =input.nextInt(); 
+                int b =input.nextInt(); 
+                double a=l*b;  
+                double p=2.00*(l+b);
+                System.out.print(String.format("%.2f\t",a)); 
+                System.out.print(String.format("%.2f\n",p)); 
+            }
+            else if(s.equals("S")){
+                int c = input.nextInt(); 
+                double a = c*c; 
+                double p = 4*c; 
+                System.out.print(String.format("%.2f\t",a)); 
+                System.out.print(String.format("%.2f\n",p));
+            } 
+            else{
+                int r = input.nextInt(); 
+                double a =r*r*g; 
+                double p=2*g*r; 
+                System.out.print(String.format("%.2f\t",a)); 
+                System.out.print(String.format("%.2f\n",p));
+            }
+        }
+    }
+}
